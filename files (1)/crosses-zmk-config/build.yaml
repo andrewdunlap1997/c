@@ -1,0 +1,20 @@
+---
+# GGGW Crosses 42 — firmware build matrix.
+#
+# CONTROLLER: these entries assume nice!nano v2 (the controller shipped with
+# current Crosses BT kits). If yours are the older nice!nano v1, change every
+# "nice_nano_v2" below to "nice_nano". See README step 1 for how to tell.
+include:
+  - board: nice_nano_v2
+    shield: crosses_left
+    artifact-name: crosses_42_left
+
+  - board: nice_nano_v2
+    shield: crosses_right
+    artifact-name: crosses_42_right
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+
+  # Settings-reset firmware (flash to BOTH halves to clear bad BT pairings)
+  - board: nice_nano_v2
+    shield: settings_reset
